@@ -53,8 +53,9 @@ Flow: browser → Next.js (`/api/px/*` proxy, cookie auth) → Express API
 
 - **Railway** (API): repo root `railway.json` builds `@sgiq/api`; set the env
   vars from `.env.example`. Migrations run on deploy.
-- **Vercel** (web): root `vercel.json`; set `API_URL`, `API_KEY`,
-  `APP_PASSWORD`.
+- **Vercel** (web): set the project **Root Directory to `apps/web`** (framework
+  auto-detects Next.js; the build script compiles `@sgiq/shared` first). Env
+  vars: `API_URL`, `API_KEY`, `APP_PASSWORD`.
 
 ## Costs
 
