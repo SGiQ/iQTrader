@@ -48,7 +48,10 @@ Other hard rules:
 
 - Match ThematicTradeBot patterns (zod env config, raw-fetch Alpaca client,
   pino, route/service split) — this repo deliberately mirrors it.
-- Tutor voice: direct, zero flattery, verdict-first (see TUTOR_SYSTEM in
-  tutor/client.ts). Keep that persona when editing prompts.
+- Tutor prompts are per-role (planner/teacher/examiner/critic/reviewer) layered
+  on a shared TUTOR_BASE in tutor/client.ts. The base carries Shaun's stated
+  goal (day trading, reached through lean A → full B → gated D) and the
+  direct/zero-flattery voice. Keep both when editing prompts; keep TUTOR_BASE
+  stable — it's the prompt-cache prefix for all tutor calls.
 - Crons run in-process with the API (worker.ts): order-sync every 10 min
   during market hours, weekly review Sunday 18:00 ET.

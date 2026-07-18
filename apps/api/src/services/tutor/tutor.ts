@@ -59,8 +59,9 @@ async function learnerContext(): Promise<string> {
 export async function generateSyllabus(): Promise<{ version: number; units: number }> {
   const context = await learnerContext();
   const result = await callTutor({
+    role: 'planner',
     task: 'syllabus',
-    prompt: `Generate (or re-plan) the full syllabus for Shaun following the four-stage skeleton. 3-5 units per stage, 2-4 lessons per unit. Lesson objectives must be concrete and testable via a paper-trade exercise or a written analysis. Front-load psychology/risk lessons inside stages A and B rather than deferring them.
+    prompt: `Generate (or re-plan) the full syllabus for Shaun, optimized for his day-trading goal per your role. Weight the stages accordingly (lean A, full B, minimal-or-no C, D as destination); 2-4 lessons per unit. Lesson objectives must be concrete and testable via a paper-trade exercise or a written analysis. Front-load psychology/risk lessons inside stages A and B rather than deferring them.
 
 Current learner state:
 ${context}
@@ -111,6 +112,7 @@ export async function generateLesson(lessonId: string): Promise<void> {
   const context = await learnerContext();
 
   const result = await callTutor({
+    role: 'teacher',
     task: 'lesson',
     prompt: `Write the lesson "${lesson.title}" (unit: "${unit?.title ?? 'unknown'}", stage ${unit?.stage ?? '?'}).
 Objective: ${lesson.objective}
@@ -156,6 +158,7 @@ export async function gradeExercise(exerciseId: string): Promise<GradeOutput> {
     .where(eq(schema.lessons.id, exercise.lessonId));
 
   const result = await callTutor({
+    role: 'examiner',
     task: 'grade',
     prompt: `Grade this exercise against your rubric. Use the actual journal entry and fill data — grade what he did, not what he meant.
 
@@ -203,6 +206,7 @@ export async function critiqueEntry(entryId: string): Promise<string> {
   const pos = positions.find((p) => p.symbol === entry.symbol);
 
   const result = await callTutor({
+    role: 'critic',
     task: 'critique',
     prompt: `Critique this trade. Evaluate: thesis quality (falsifiable? or vibes?), plan adherence (did the fill and any exit match the stated plan?), sizing vs stated risk, and any psychology flags (chasing, averaging down, moving stops, revenge trading, oversized positions).
 
@@ -254,6 +258,7 @@ export async function runWeeklyReview(): Promise<WeeklyReviewOutput & { id: stri
     );
 
   const result = await callTutor({
+    role: 'reviewer',
     task: 'weekly-review',
     maxTokens: 16000,
     prompt: `Run the weekly review for ${periodStart.toISOString().slice(0, 10)} to ${periodEnd.toISOString().slice(0, 10)}.
