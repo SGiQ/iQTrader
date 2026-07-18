@@ -1,0 +1,23 @@
+{
+  "name": "sgiqtrader",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Personal AI trading tutor: Alpaca paper trading + Claude-powered coaching, journaling, and adaptive curriculum",
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel run dev",
+    "build": "pnpm --filter @sgiq/shared run build && pnpm -r run build",
+    "typecheck": "pnpm --filter @sgiq/shared run build && pnpm -r run typecheck",
+    "test": "pnpm --filter @sgiq/shared run build && pnpm -r run test",
+    "db:generate": "pnpm --filter @sgiq/api run db:generate",
+    "db:migrate": "pnpm --filter @sgiq/api run db:migrate",
+    "api": "pnpm --filter @sgiq/api run dev",
+    "web": "pnpm --filter @sgiq/web run dev"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

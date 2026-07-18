@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-zinc-950 text-zinc-100;
+}
+
+.card {
+  @apply rounded-lg border border-zinc-800 bg-zinc-900 p-4;
+}
+
+.btn {
+  @apply rounded bg-emerald-700 px-3 py-1.5 text-sm font-medium text-white hover:bg-emerald-600 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.btn-secondary {
+  @apply rounded border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-sm text-zinc-200 hover:bg-zinc-700 disabled:opacity-50;
+}
+
+.input {
+  @apply w-full rounded border border-zinc-700 bg-zinc-800 px-2 py-1.5 text-sm text-zinc-100 placeholder-zinc-500 focus:border-emerald-600 focus:outline-none;
+}
+
+.label {
+  @apply mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-400;
+}
+
+.prose-dark {
+  @apply text-sm leading-relaxed text-zinc-200;
+}
+.prose-dark h1,
+.prose-dark h2,
+.prose-dark h3 {
+  @apply mb-2 mt-4 font-semibold text-zinc-100;
+}
+.prose-dark h1 {
+  @apply text-xl;
+}
+.prose-dark h2 {
+  @apply text-lg;
+}
+.prose-dark p {
+  @apply mb-3;
+}
+.prose-dark ul,
+.prose-dark ol {
+  @apply mb-3 ml-5 list-disc;
+}
+.prose-dark ol {
+  @apply list-decimal;
+}
+.prose-dark li {
+  @apply mb-1;
+}
+.prose-dark code {
+  @apply rounded bg-zinc-800 px-1 py-0.5 text-xs;
+}
+.prose-dark pre {
+  @apply mb-3 overflow-x-auto rounded bg-zinc-800 p-3 text-xs;
+}
+.prose-dark blockquote {
+  @apply mb-3 border-l-2 border-emerald-700 pl-3 text-zinc-300;
+}
+.prose-dark strong {
+  @apply text-zinc-100;
+}
